@@ -2,12 +2,12 @@ import React from 'react';
 import App from '@/Layouts/App';
 import { Head } from '@inertiajs/inertia-react';
 
-export default function Dashboard(props) {
+export default function Home(props) {
     return (
         <div>
-            Dashboard
+            Home
         </div>
     );
 }
 
-Dashboard.layout = page => <App children={page} />
+Home.layout = page => <App children={page} />

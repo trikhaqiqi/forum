@@ -94,7 +94,18 @@ class ThreadController extends Controller
      */
     public function update(Request $request, Thread $thread)
     {
-        //
+        $request->validate([
+            'title' => ['required'],
+            'body' => ['required'],
+            'category_id' => ['required'],
+        ]);
+
+        $thread->update([
+            'title' => $request->title,
+            'body' => $request->body,
+        ]);
+
+        return redirect(route('threads.show', $thread));
     }
 
     /**

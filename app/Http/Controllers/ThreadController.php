@@ -94,6 +94,7 @@ class ThreadController extends Controller
      */
     public function update(Request $request, Thread $thread)
     {
+        $this->authorize('update', $thread);
         $request->validate([
             'title' => ['required'],
             'body' => ['required'],

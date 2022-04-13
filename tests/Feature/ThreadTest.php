@@ -26,10 +26,11 @@ test('a guest can not create new threads', function () {
 it('can be update by the owner of thread', function () {
     // $this->withoutExceptionHandling();
     $user = User::factory()->create();
-    $thread = Thread::factory()->create();
+    $thread = Thread::factory()->create(['user_id' => $user->id]);
+
+    expect($user->id)->toEqual($thread->user_id);
 
     $response = $this->actingAs($user)->put(route('threads.update', $thread->id), [
-        'id' => 5,
         'title' => 'Thread Updated',
         'body' => 'The body is updated',
         'category_id' => Category::factory()->create()->id,
@@ -42,8 +43,17 @@ it('can be update by the owner of thread', function () {
 
 it('can not be updated if he does not fill anything required', function () {
     $user = User::factory()->create();
-    $thread = Thread::factory()->create();
+    $thread = Thread::factory()->create(['user_id' => $user->id]);
+
+    expect($thread->user_id)->toEqual($user->id);
 
     $response = $this->actingAs($user)->put(route('threads.update', $thread->id), []);
     $response->assertRedirect()->assertSessionHasErrors();
+});
+
+it('can not be updated if he does not own the thread', function () {
+    $user = User::factory()->create();
+    $thread = Thread::factory()->create();
+    $response = $this->actingAs($user)->put(route('threads.update', $thread->id), []);
+    expect($response->status())->toEqual(403);
 });

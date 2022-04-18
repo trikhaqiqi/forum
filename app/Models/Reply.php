@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Thread extends Model
+class Reply extends Model
 {
     use HasFactory;
 
@@ -16,13 +16,8 @@ class Thread extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function category()
+    public function thread()
     {
-        return $this->belongsTo(Category::class);
-    }
-
-    public function replies()
-    {
-        return $this->hasMany(Reply::class);
+        return $this->belongsTo(Thread::class);
     }
 }

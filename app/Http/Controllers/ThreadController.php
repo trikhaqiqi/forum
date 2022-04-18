@@ -82,7 +82,10 @@ class ThreadController extends Controller
      */
     public function edit(Thread $thread)
     {
-        //
+        return inertia('Threads/Edit', [
+            'categories' => Category::get(),
+            'thread' => $thread,
+        ]);
     }
 
     /**

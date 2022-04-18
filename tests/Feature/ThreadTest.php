@@ -57,3 +57,19 @@ it('can not be updated if he does not own the thread', function () {
     $response = $this->actingAs($user)->put(route('threads.update', $thread->id), []);
     expect($response->status())->toEqual(403);
 });
+
+it('can be deleted by the owner of the thread', function () {
+    $user = User::factory()->create();
+    $thread = Thread::factory()->create(['user_id' => $user->id]);
+    expect($user->id)->toEqual($thread->user_id);
+    $response = $this->actingAs($user)->delete(route('threads.destroy', $thread->id));
+    $response->assertRedirect(route('threads.index'));
+    $this->assertDeleted($thread);
+});
+
+it('can not be deleted if he does not own the thread', function () {
+    $user = User::factory()->create();
+    $thread = Thread::factory()->create();
+    $response = $this->actingAs($user)->delete(route('threads.destroy', $thread->id));
+    expect($response->status())->toEqual(403);
+});

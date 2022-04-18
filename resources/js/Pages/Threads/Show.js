@@ -5,7 +5,7 @@ import React from "react";
 export default function Show({ thread }) {
   return (
         <div>
-            <Head title="thread.title" />
+            <Head title={thread.title} />
             <h1>{thread.title}</h1>
             <div>
                 {thread.created_at}
@@ -17,4 +17,4 @@ export default function Show({ thread }) {
     );
 }
 
-Show.layout = page => <App children={page}/>
+Show.layout = page => <App children={page} />

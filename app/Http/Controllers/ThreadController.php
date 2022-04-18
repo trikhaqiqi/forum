@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ThreadResource;
 use App\Models\Category;
 use App\Models\Thread;
 use Illuminate\Support\Str;
@@ -21,8 +22,9 @@ class ThreadController extends Controller
      */
     public function index()
     {
+        $thread = Thread::query()->with(['category', 'user']);
         return inertia('Threads/Index', [
-            'threads' => Thread::latest()->paginate(),
+            'threads' => ThreadResource::collection($thread->latest()->paginate()),
         ]);
     }
 
@@ -72,7 +74,7 @@ class ThreadController extends Controller
     public function show(Thread $thread)
     {
         return inertia('Threads/Show', [
-            'thread' => $thread,
+            'thread' => new ThreadResource($thread),
         ]);
     }
 

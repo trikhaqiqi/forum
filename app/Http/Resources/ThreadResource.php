@@ -29,7 +29,7 @@ class ThreadResource extends JsonResource
             'user' => [
                 'id' => $this->user->id,
                 'name' => $this->user->name,
-                'picture' => $this->user->picture(),
+                'picture' => $this->when(request()->routeIs('threads.show', $this->slug), $this->user->picture()),
             ],
         ];
     }

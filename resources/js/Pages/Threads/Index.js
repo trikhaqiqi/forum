@@ -10,7 +10,7 @@ export default function Index( props ) {
             {threads.length ? threads.map(thread => (
                 <div className="block bg-white shadow-sm border p-5 rounded-lg" key={thread.id}>
                     <Link href="#" className="text-blue-500 font-medium text-sm">{thread.category.name}</Link>
-                    <Link href={route('threads.show', thread.id)}>
+                    <Link href={route('threads.show', thread.slug)}>
                         <h1>{thread.title}</h1>
                     </Link>
                     <div className="flex items-center">

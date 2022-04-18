@@ -3403,7 +3403,7 @@ function Index(props) {
           className: "text-blue-500 font-medium text-sm",
           children: thread.category.name
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-          href: route('threads.show', thread.id),
+          href: route('threads.show', thread.slug),
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h1", {
             children: thread.title
           })

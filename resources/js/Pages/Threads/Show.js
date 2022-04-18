@@ -1,5 +1,5 @@
 import App from "@/Layouts/App";
-import { Head } from "@inertiajs/inertia-react";
+import { Head, Link } from "@inertiajs/inertia-react";
 import React from "react";
 
 export default function Show({ thread }) {
@@ -13,6 +13,9 @@ export default function Show({ thread }) {
             <div className="leading-relaxed">
                 {thread.body}
             </div>
+            <Link className="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600" href={route('threads.destroy', thread.id)} method="delete" as="button">
+                Delete
+            </Link>
         </div>
     );
 }

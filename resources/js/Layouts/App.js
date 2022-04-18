@@ -9,8 +9,9 @@ export default function App({ title, children }) {
         <div className="min-h-screen bg-gray-100">
             <Head title={title ?? 'Kudang Koding | Forum'} />
             <Navbar />
-
-            <main>{children}</main>
+            <div className="container">
+                <main className='pt-8'>{children}</main>
+            </div>
         </div>
     );
 }

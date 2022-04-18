@@ -21,7 +21,9 @@ class ThreadController extends Controller
      */
     public function index()
     {
-        //
+        return inertia('Threads/Index', [
+            'threads' => Thread::latest()->paginate(),
+        ]);
     }
 
     /**

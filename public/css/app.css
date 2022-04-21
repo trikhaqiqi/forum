@@ -702,20 +702,20 @@ select {
 .-mt-px {
   margin-top: -1px;
 }
-.mb-4 {
-  margin-bottom: 1rem;
+.mt-1 {
+  margin-top: 0.25rem;
 }
 .mt-3 {
   margin-top: 0.75rem;
 }
-.mt-6 {
-  margin-top: 1.5rem;
-}
-.mt-1 {
-  margin-top: 0.25rem;
-}
 .mb-5 {
   margin-bottom: 1.25rem;
+}
+.mb-4 {
+  margin-bottom: 1rem;
+}
+.mt-6 {
+  margin-top: 1.5rem;
 }
 .block {
   display: block;
@@ -744,11 +744,11 @@ select {
 .h-12 {
   height: 3rem;
 }
-.h-20 {
-  height: 5rem;
-}
 .h-px {
   height: 1px;
+}
+.h-20 {
+  height: 5rem;
 }
 .min-h-screen {
   min-height: 100vh;
@@ -914,6 +914,10 @@ select {
   --tw-bg-opacity: 1;
   background-color: rgb(17 24 39 / var(--tw-bg-opacity));
 }
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
 .bg-indigo-50 {
   --tw-bg-opacity: 1;
   background-color: rgb(238 242 255 / var(--tw-bg-opacity));
@@ -921,10 +925,6 @@ select {
 .bg-red-500 {
   --tw-bg-opacity: 1;
   background-color: rgb(239 68 68 / var(--tw-bg-opacity));
-}
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 .fill-current {
   fill: currentColor;

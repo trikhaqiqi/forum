@@ -75,7 +75,7 @@ class ThreadController extends Controller
     public function show(Thread $thread)
     {
         $thread = (new ThreadResource($thread))->additional([
-            'replies' => ReplyResource::collection($thread->replies()->with('user')->get()),
+            'replies' => ReplyResource::collection($thread->replies()->whereNull('parent_id')->with(['user'])->get()),
         ]);
         return inertia('Threads/Show', [
             'thread' => $thread,

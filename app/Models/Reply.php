@@ -11,6 +11,8 @@ class Reply extends Model
 
     protected $guarded = [];
 
+    protected $with = ['children.user'];
+
     public function user()
     {
         return $this->belongsTo(User::class);

@@ -2434,8 +2434,18 @@ function Reply(_ref) {
                   value: data.body,
                   onChange: handleChange
                 })
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
-                children: "Reply"
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                className: "flex items-center",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+                  onClick: function onClick() {
+                    return setData(_objectSpread(_objectSpread({}, data), {}, {
+                      parent_id: null
+                    }));
+                  },
+                  children: "Cancel"
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
+                  children: "Reply"
+                })]
               })]
             }) : '']
           })]
@@ -2443,7 +2453,7 @@ function Reply(_ref) {
       }, reply.id);
     }) : 'No reply', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "h-px bg-black"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+    }), !data.parent_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
       onSubmit: replyStoreHandler,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "mb-5",

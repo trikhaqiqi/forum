@@ -61,7 +61,10 @@ export default function Reply({ thread }) {
                                             <div className="mb-5">
                                                 <textarea name="body" value={data.body} onChange={handleChange} />
                                             </div>
-                                            <Button>Reply</Button>
+                                            <div className="flex items-center">
+                                                <button onClick={() => setData({...data, parent_id: null})}>Cancel</button>
+                                                <Button>Reply</Button>
+                                            </div>
                                         </form>
                                     : ''}
                                 </div>
@@ -70,12 +73,14 @@ export default function Reply({ thread }) {
                     )): 'No reply'}
                 <div className="h-px bg-black"></div>
 
-                <form onSubmit={replyStoreHandler}>
-                    <div className="mb-5">
-                        <textarea name="body" value={data.body} onChange={handleChange} />
-                    </div>
-                    <Button>Reply</Button>
-                </form>
+                {!data.parent_id &&
+                    <form onSubmit={replyStoreHandler}>
+                        <div className="mb-5">
+                            <textarea name="body" value={data.body} onChange={handleChange} />
+                        </div>
+                        <Button>Reply</Button>
+                    </form>
+                }
         </div>
     );
 }

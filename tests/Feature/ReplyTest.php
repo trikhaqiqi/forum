@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Reply;
 use App\Models\Thread;
 use App\Models\User;
 
@@ -32,4 +33,16 @@ it('will be redirect to 404 page if thread does not exists', function () {
 it('can not be reply if authenticated user does not fill the body field', function () {
     $response = $this->actingAs($this->user)->post(route('replies.store', $this->thread->slug), []);
     $response->assertRedirect()->assertSessionHasErrors();
+});
+
+it('reply can be replied', function () {
+    $reply = Reply::factory()->create(['thread_id' => $this->thread->id, 'user_id' => $this->user->id]);
+    $anotherUser = User::factory()->create();
+
+    $this->actingAs($anotherUser)->post(route('replies.store', $this->thread->slug), [
+        'parent_id' => $reply->id,
+        'body' => 'It is a children',
+    ]);
+
+    expect($reply->children->count())->toEqual(1);
 });

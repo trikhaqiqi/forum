@@ -12,23 +12,41 @@ export default function Show({ thread }) {
 
     const replyStoreHandler = (e) => {
         e.preventDefault();
-        post(route('replies.store', thread.slug), {
+        post(route('replies.store', thread.data.slug), {
             onSuccess: () => reset()
         });
     }
     return (
             <div>
-                <Head title={thread.title} />
-                <h1>{thread.title}</h1>
+                <Head title={thread.data.title} />
+                <h1>{thread.data.title}</h1>
                 <div>
-                    {thread.created_at}
+                    {thread.data.created_at}
                 </div>
                 <div className="leading-relaxed">
-                    {thread.body}
+                    {thread.data.body}
                 </div>
-                <Link className="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600" href={route('threads.destroy', thread.slug)} method="delete" as="button">
+                <Link className="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600" href={route('threads.destroy', thread.data.slug)} method="delete" as="button">
                     Delete
                 </Link>
+
+                <div className="h-px bg-black"></div>
+                    {thread.replies.length ? thread.replies.map(reply => (
+                        <div key={reply.id} className="py-4">
+
+                            <div className="flex gap-x-4">
+                                <img className="w-8 h-8 mt-1 rounded-full" src={reply.user.picture} alt={reply.user.name} />
+                                <div>
+                                    <h4 className="text-sm font-medium">{reply.user.name}</h4>
+                                    <span className="text-gray-500 text-xs">
+                                        {reply.created_at}
+                                    </span>
+                                <div>{reply.body}</div>
+                                </div>
+                            </div>
+                        </div>
+                    )): 'No reply'}
+                <div className="h-px bg-black"></div>
 
                 <form onSubmit={replyStoreHandler}>
                     <div className="mb-5">

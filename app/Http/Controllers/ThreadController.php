@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ReplyResource;
 use App\Http\Resources\ThreadResource;
 use App\Models\Category;
 use App\Models\Thread;
@@ -73,8 +74,11 @@ class ThreadController extends Controller
      */
     public function show(Thread $thread)
     {
+        $thread = (new ThreadResource($thread))->additional([
+            'replies' => ReplyResource::collection($thread->replies()->with('user')->get()),
+        ]);
         return inertia('Threads/Show', [
-            'thread' => new ThreadResource($thread),
+            'thread' => $thread,
         ]);
     }
 

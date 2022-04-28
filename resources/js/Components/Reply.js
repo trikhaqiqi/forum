@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Button from "@/Components/Button";
-import { useForm } from "@inertiajs/inertia-react";
+import { Link, useForm } from "@inertiajs/inertia-react";
 
 export default function Reply({ thread, auth }) {
 
@@ -39,6 +39,11 @@ export default function Reply({ thread, auth }) {
                                             {reply.created_at}
                                         </span>
 
+                                        { reply.likes_count }
+                                        <Link href={route('likes.store')} method="POST" data={{ reply: reply.id }} as="button" preserveScroll>
+                                            Like
+                                        </Link>
+
                                         { auth.user &&
                                             <button className="text-gray-500 text-xs" onClick={() => showReplyForm(reply)}>
                                                 Reply
@@ -56,6 +61,10 @@ export default function Reply({ thread, auth }) {
                                                     Replied at {child.created_at}
                                                 </span>
                                                 <div>{child.body}</div>
+                                                { child.likes_count }
+                                                <Link href={route('likes.store')} method="POST" data={{ reply: child.id }} as="button" preserveScroll>
+                                                    Like
+                                                </Link>
                                             </div>
                                         </div>
                                     )) : '' }

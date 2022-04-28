@@ -2400,6 +2400,15 @@ function Reply(_ref) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
                 className: "text-gray-500 text-xs",
                 children: reply.created_at
+              }), reply.likes_count, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+                href: route('likes.store'),
+                method: "POST",
+                data: {
+                  reply: reply.id
+                },
+                as: "button",
+                preserveScroll: true,
+                children: "Like"
               }), auth.user && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
                 className: "text-gray-500 text-xs",
                 onClick: function onClick() {
@@ -2423,6 +2432,15 @@ function Reply(_ref) {
                     children: ["Replied at ", child.created_at]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                     children: child.body
+                  }), child.likes_count, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+                    href: route('likes.store'),
+                    method: "POST",
+                    data: {
+                      reply: child.id
+                    },
+                    as: "button",
+                    preserveScroll: true,
+                    children: "Like"
                   })]
                 })]
               }, child.id);
@@ -3605,6 +3623,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
 function Show(_ref) {
   var thread = _ref.thread;
   var auth = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.auth; // console.log(auth.user.id, thread.user_id);
@@ -3620,13 +3639,24 @@ function Show(_ref) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       className: "leading-relaxed",
       children: thread.data.body
-    }), auth.user ? auth.user.id === thread.data.user.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
-      className: "bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600",
-      href: route('threads.destroy', thread.data.slug),
-      method: "delete",
-      as: "button",
-      children: "Delete"
-    }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    }), auth.user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
+      children: [auth.user.id === thread.data.user.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        className: "bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600",
+        href: route('threads.destroy', thread.data.slug),
+        method: "delete",
+        as: "button",
+        children: "Delete"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        href: route('likes.store'),
+        method: "POST",
+        data: {
+          thread: thread.data.id
+        },
+        as: "button",
+        preserveScroll: true,
+        children: "Like"
+      })]
+    }) : '', thread.data.likes_count, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       className: "h-px bg-black"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Reply__WEBPACK_IMPORTED_MODULE_0__["default"], {
       auth: auth,

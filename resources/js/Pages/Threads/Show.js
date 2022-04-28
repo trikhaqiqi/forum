@@ -21,11 +21,25 @@ export default function Show({ thread }) {
                     {thread.data.body}
                 </div>
 
-                { auth.user ? auth.user.id === thread.data.user.id &&
+                { auth.user ?
+                    <>
+                        {auth.user.id === thread.data.user.id &&
+                            <Link className="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600" href={route('threads.destroy', thread.data.slug)} method="delete" as="button">
+                                Delete
+                            </Link>}
+                            <Link href={route('likes.store')} method="POST" data={{ thread: thread.data.id }} as="button" preserveScroll>
+                                Like
+                            </Link>
+                    </>
+                : '' }
+
+                {thread.data.likes_count}
+
+                {/* { auth.user ? auth.user.id === thread.data.user.id &&
                     <Link className="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600" href={route('threads.destroy', thread.data.slug)} method="delete" as="button">
                         Delete
                     </Link> : ''
-                }
+                } */}
 
                 <div className="h-px bg-black"></div>
                 {/* <Reply thread={thread}/> */}

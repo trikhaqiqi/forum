@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Reply;
-use App\Models\Thread;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -29,9 +27,13 @@ class LikeController extends Controller
         // Query
         $model = $fullNameSpaceOfTheModel::find($request->get($request->keys()[0]));
         $toggle = $model->likes()->where('user_id', $request->user()->id)->exists() ? 'delete' : 'save';
-        $request->user()->likes()->$toggle($model->likes()->make());
+        if ($toggle == "delete") {
+            $model->likes()->where('user_id', $request->user()->id)->delete();
+        } else {
+            $request->user()->likes()->$toggle($model->likes()->make());
+        }
 
-        return redirect(route('threads.index'));
+        return back();
 
         // switch ($key) {
         //     case 'thread':

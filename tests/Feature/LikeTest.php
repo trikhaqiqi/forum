@@ -13,13 +13,13 @@ beforeEach(function () {
 test('thread can be liked by authenticated user', function () {
     $this->withoutExceptionHandling();
     $this->actingAs($this->user)->post(route('likes.store', ['thread' => $this->thread->id]))
-        ->assertRedirect(route('threads.index'));
+        ->assertRedirect();
     expect($this->thread->likes->count())->toBe(1);
 });
 
 test('reply can be liked by authenticated user', function () {
     $this->actingAs($this->user)->post(route('likes.store', ['reply' => $this->reply->id]))
-        ->assertRedirect(route('threads.index'));
+        ->assertRedirect();
     expect($this->reply->likes->count())->toBe(1);
 });
 

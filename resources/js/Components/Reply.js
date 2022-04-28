@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Button from "@/Components/Button";
 import { useForm } from "@inertiajs/inertia-react";
 
-export default function Reply({ thread }) {
+export default function Reply({ thread, auth }) {
 
     const {data, setData, post, reset} = useForm({
         body: '',
@@ -38,9 +38,13 @@ export default function Reply({ thread }) {
                                         <span className="text-gray-500 text-xs">
                                             {reply.created_at}
                                         </span>
-                                        <button className="text-gray-500 text-xs" onClick={() => showReplyForm(reply)}>
-                                            Reply
-                                        </button>
+
+                                        { auth.user &&
+                                            <button className="text-gray-500 text-xs" onClick={() => showReplyForm(reply)}>
+                                                Reply
+                                            </button>
+                                        }
+
                                     </div>
 
                                     {reply.children.length ? reply.children.map(child => (
@@ -73,14 +77,14 @@ export default function Reply({ thread }) {
                     )): 'No reply'}
                 <div className="h-px bg-black"></div>
 
-                {!data.parent_id &&
+                { auth.user ? !data.parent_id &&
                     <form onSubmit={replyStoreHandler}>
                         <div className="mb-5">
                             <textarea name="body" value={data.body} onChange={handleChange} />
                         </div>
                         <Button>Reply</Button>
                     </form>
-                }
+                : ''}
         </div>
     );
 }

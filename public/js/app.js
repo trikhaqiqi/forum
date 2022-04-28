@@ -2346,7 +2346,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 
 function Reply(_ref) {
-  var thread = _ref.thread;
+  var thread = _ref.thread,
+      auth = _ref.auth;
 
   var _useForm = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.useForm)({
     body: '',
@@ -2399,7 +2400,7 @@ function Reply(_ref) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
                 className: "text-gray-500 text-xs",
                 children: reply.created_at
-              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+              }), auth.user && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
                 className: "text-gray-500 text-xs",
                 onClick: function onClick() {
                   return showReplyForm(reply);
@@ -2453,7 +2454,7 @@ function Reply(_ref) {
       }, reply.id);
     }) : 'No reply', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
       className: "h-px bg-black"
-    }), !data.parent_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+    }), auth.user ? !data.parent_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
       onSubmit: replyStoreHandler,
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
         className: "mb-5",
@@ -2465,7 +2466,7 @@ function Reply(_ref) {
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Components_Button__WEBPACK_IMPORTED_MODULE_1__["default"], {
         children: "Reply"
       })]
-    })]
+    }) : '']
   });
 }
 
@@ -3606,6 +3607,9 @@ __webpack_require__.r(__webpack_exports__);
 
 function Show(_ref) {
   var thread = _ref.thread;
+  var auth = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.auth; // console.log(auth.user.id, thread.user_id);
+  // console.log(`user ${auth.user.id}`, `thread user_id ${thread.user_id}`);
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Head, {
       title: thread.data.title
@@ -3616,15 +3620,16 @@ function Show(_ref) {
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       className: "leading-relaxed",
       children: thread.data.body
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+    }), auth.user ? auth.user.id === thread.data.user.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
       className: "bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600",
       href: route('threads.destroy', thread.data.slug),
       method: "delete",
       as: "button",
       children: "Delete"
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+    }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
       className: "h-px bg-black"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Reply__WEBPACK_IMPORTED_MODULE_0__["default"], {
+      auth: auth,
       thread: thread
     })]
   });

@@ -11,13 +11,16 @@ beforeEach(function () {
 });
 
 test('thread can be liked by authenticated user', function () {
+    $this->withoutExceptionHandling();
     $this->actingAs($this->user)->post(route('likes.store', ['thread' => $this->thread->id]))
-        ->assertStatus(200);
+        ->assertRedirect(route('threads.index'));
+    expect($this->thread->likes->count())->toBe(1);
 });
 
 test('reply can be liked by authenticated user', function () {
     $this->actingAs($this->user)->post(route('likes.store', ['reply' => $this->reply->id]))
-        ->assertStatus(200);
+        ->assertRedirect(route('threads.index'));
+    expect($this->reply->likes->count())->toBe(1);
 });
 
 it('it can not be like by unauthenticated user', function () {

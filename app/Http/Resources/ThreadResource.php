@@ -21,6 +21,9 @@ class ThreadResource extends JsonResource
             'slug' => $this->slug,
             'body' => $this->body,
             'created_at' => $this->created_at->format("d F, Y"),
+            // Ini untuk mark reply best comment
+            'answer_id' => $this->answer_id,
+            // Ini akhirannya
             'likes_count' => $this->likes_count,
             'category' => [
                 'id' => $this->category->id,

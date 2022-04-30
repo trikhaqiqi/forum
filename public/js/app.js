@@ -2297,6 +2297,9 @@ function Navbar() {
             href: route('threads.create'),
             children: "New Thread"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
+            href: route('threads.create'),
+            children: auth.user.name
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_0__.Link, {
             method: "post",
             href: route('logout'),
             as: "button",
@@ -2339,6 +2342,7 @@ function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (O
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 
@@ -2400,15 +2404,28 @@ function Reply(_ref) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
                 className: "text-gray-500 text-xs",
                 children: reply.created_at
-              }), reply.likes_count, auth.user && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
-                href: route('likes.store'),
-                method: "POST",
-                data: {
-                  reply: reply.id
-                },
-                as: "button",
-                preserveScroll: true,
-                children: "Like"
+              }), thread.data.answer_id == reply.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                className: "bg-green-500 text-white px-2 py-1 rounded",
+                children: "best"
+              }), reply.likes_count, auth.user && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+                  href: route('likes.store'),
+                  method: "POST",
+                  data: {
+                    reply: reply.id
+                  },
+                  as: "button",
+                  preserveScroll: true,
+                  children: "Like"
+                }), auth.user.id == thread.data.user.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+                  href: route('answer.store', thread.data.slug),
+                  data: {
+                    answer_id: reply.id
+                  },
+                  method: "POST",
+                  as: "button",
+                  children: "Mark as best"
+                })]
               }), auth.user && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
                 className: "text-gray-500 text-xs",
                 onClick: function onClick() {
@@ -2432,15 +2449,31 @@ function Reply(_ref) {
                     children: ["Replied at ", child.created_at]
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
                     children: child.body
-                  }), child.likes_count, auth.user && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
-                    href: route('likes.store'),
-                    method: "POST",
-                    data: {
-                      reply: child.id
-                    },
-                    as: "button",
-                    preserveScroll: true,
-                    children: "Like"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+                    className: "flex items-center gap-x-4",
+                    children: [child.likes_count, thread.data.answer_id == child.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+                      className: "bg-green-500 text-white px-2 py-1 rounded",
+                      children: "best"
+                    }), auth.user && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+                      children: [auth.user.id == thread.data.user.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+                        href: route('answer.store', thread.data.slug),
+                        data: {
+                          answer_id: child.id
+                        },
+                        method: "POST",
+                        as: "button",
+                        children: "Mark as best"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+                        href: route('likes.store'),
+                        method: "POST",
+                        data: {
+                          reply: child.id
+                        },
+                        as: "button",
+                        preserveScroll: true,
+                        children: "Like"
+                      })]
+                    })]
                   })]
                 })]
               }, child.id);

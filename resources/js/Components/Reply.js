@@ -39,12 +39,25 @@ export default function Reply({ thread, auth }) {
                                             {reply.created_at}
                                         </span>
 
+                                        { thread.data.answer_id == reply.id &&
+                                            <div className="bg-green-500 text-white px-2 py-1 rounded">
+                                                best
+                                            </div>
+                                        }
+
                                         { reply.likes_count }
 
                                         { auth.user &&
-                                            <Link href={route('likes.store')} method="POST" data={{ reply: reply.id }} as="button" preserveScroll>
-                                                Like
-                                            </Link>
+                                            <>
+                                                <Link href={route('likes.store')} method="POST" data={{ reply: reply.id }} as="button" preserveScroll>
+                                                    Like
+                                                </Link>
+                                                { auth.user.id == thread.data.user.id &&
+                                                     <Link href={route('answer.store', thread.data.slug)} data={{ answer_id: reply.id }} method="POST" as="button">
+                                                        Mark as best
+                                                    </Link>
+                                                }
+                                            </>
                                         }
 
                                         { auth.user &&
@@ -64,12 +77,32 @@ export default function Reply({ thread, auth }) {
                                                     Replied at {child.created_at}
                                                 </span>
                                                 <div>{child.body}</div>
-                                                { child.likes_count }
-                                                { auth.user &&
-                                                    <Link href={route('likes.store')} method="POST" data={{ reply: child.id }} as="button" preserveScroll>
-                                                        Like
-                                                    </Link>
+                                                <div className="flex items-center gap-x-4">
+                                                    { child.likes_count }
+
+                                                    {/* <div className="bg-green-500 text-white px-2 py-1 rounded">
+                                                        { thread.data.answer_id == child.id ? 'best' : ''}
+                                                    </div> */}
+
+                                                { thread.data.answer_id == child.id &&
+                                                    <div className="bg-green-500 text-white px-2 py-1 rounded">
+                                                        best
+                                                    </div>
                                                 }
+
+                                                    { auth.user &&
+                                                        <>
+                                                            { auth.user.id == thread.data.user.id &&
+                                                                <Link href={route('answer.store', thread.data.slug)} data={{ answer_id: child.id }} method="POST" as="button">
+                                                                    Mark as best
+                                                                </Link>
+                                                            }
+                                                            <Link href={route('likes.store')} method="POST" data={{ reply: child.id }} as="button" preserveScroll>
+                                                                Like
+                                                            </Link>
+                                                        </>
+                                                    }
+                                                </div>
                                             </div>
                                         </div>
                                     )) : '' }

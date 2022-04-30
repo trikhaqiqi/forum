@@ -40,9 +40,12 @@ export default function Reply({ thread, auth }) {
                                         </span>
 
                                         { reply.likes_count }
-                                        <Link href={route('likes.store')} method="POST" data={{ reply: reply.id }} as="button" preserveScroll>
-                                            Like
-                                        </Link>
+
+                                        { auth.user &&
+                                            <Link href={route('likes.store')} method="POST" data={{ reply: reply.id }} as="button" preserveScroll>
+                                                Like
+                                            </Link>
+                                        }
 
                                         { auth.user &&
                                             <button className="text-gray-500 text-xs" onClick={() => showReplyForm(reply)}>
@@ -62,9 +65,11 @@ export default function Reply({ thread, auth }) {
                                                 </span>
                                                 <div>{child.body}</div>
                                                 { child.likes_count }
-                                                <Link href={route('likes.store')} method="POST" data={{ reply: child.id }} as="button" preserveScroll>
-                                                    Like
-                                                </Link>
+                                                { auth.user &&
+                                                    <Link href={route('likes.store')} method="POST" data={{ reply: child.id }} as="button" preserveScroll>
+                                                        Like
+                                                    </Link>
+                                                }
                                             </div>
                                         </div>
                                     )) : '' }

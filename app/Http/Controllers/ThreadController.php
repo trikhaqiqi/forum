@@ -25,7 +25,7 @@ class ThreadController extends Controller
     {
         $thread = Thread::query()->with(['category', 'user']);
         return inertia('Threads/Index', [
-            'threads' => ThreadResource::collection($thread->latest()->paginate()),
+            'threads' => ThreadResource::collection($thread->latest()->paginate(15)),
         ]);
     }
 

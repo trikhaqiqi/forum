@@ -8,10 +8,12 @@ module.exports = {
         './resources/js/**/*.js',
     ],
 
+    mode: 'jit',
+
     theme: {
         extend: {
             fontFamily: {
-                sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                // sans: ['Nunito', ...defaultTheme.fontFamily.sans],
             },
             container: {
                 center: 'true',

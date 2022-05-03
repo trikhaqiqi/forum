@@ -1,10 +1,11 @@
+import Pagination from "@/Components/Pagination";
 import App from "@/Layouts/App";
 import { Head, Link } from "@inertiajs/inertia-react";
 import React from "react";
 
-export default function Index( props ) {
-    const { data: threads } = props.threads
-    // console.log(props);
+export default function Index(props) {
+    const { data: threads, meta } = props.threads
+    // console.log(props.threads);
     return (
         <div className="space-y-4">
             {threads.length ? threads.map(thread => (
@@ -19,8 +20,9 @@ export default function Index( props ) {
                     </div>
                 </div>
             )) : 'No threads.'}
+            <Pagination meta={meta} />
         </div>
     );
 }
 
-Index.layout = page => <App children={page} title="Threads"/>
+Index.layout = page => <App children={page} title="Threads" />

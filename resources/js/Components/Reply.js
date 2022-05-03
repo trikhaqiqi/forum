@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Button from "@/Components/Button";
 import { Link, useForm } from "@inertiajs/inertia-react";
+import ReplyBlock from "./ReplyBlock";
 
 export default function Reply({ thread, auth }) {
 
@@ -27,100 +28,7 @@ export default function Reply({ thread, auth }) {
     return (
         <div>
             {thread.replies.length ? thread.replies.map(reply => (
-                        <div key={reply.id} className="py-4">
-                            <div className="flex gap-x-4">
-                                <img className="w-8 h-8 mt-1 rounded-full" src={reply.user.picture} alt={reply.user.name} />
-                                <div>
-                                    <h4 className="text-sm font-medium">{reply.user.name}</h4>
-
-                                    <div>{reply.body}</div>
-                                    <div className="flex items-center gap-x-4">
-                                        <span className="text-gray-500 text-xs">
-                                            {reply.created_at}
-                                        </span>
-
-                                        { thread.data.answer_id == reply.id &&
-                                            <div className="bg-green-500 text-white px-2 py-1 rounded">
-                                                best
-                                            </div>
-                                        }
-
-                                        { reply.likes_count }
-
-                                        { auth.user &&
-                                            <>
-                                                <Link href={route('likes.store')} method="POST" data={{ reply: reply.id }} as="button" preserveScroll>
-                                                    Like
-                                                </Link>
-                                                { auth.user.id == thread.data.user.id &&
-                                                     <Link href={route('answer.store', thread.data.slug)} data={{ answer_id: reply.id }} method="POST" as="button">
-                                                        Mark as best
-                                                    </Link>
-                                                }
-                                            </>
-                                        }
-
-                                        { auth.user &&
-                                            <button className="text-gray-500 text-xs" onClick={() => showReplyForm(reply)}>
-                                                Reply
-                                            </button>
-                                        }
-
-                                    </div>
-
-                                    {reply.children.length ? reply.children.map(child => (
-                                        <div className="flex gap-x-4 space-y-4 mt-4" key={child.id}>
-                                            <img className="w-8 h-8 mt-3 rounded-full" src={child.user.picture} alt={child.user.name} />
-                                            <div>
-                                                <h4 className="text-sm font-medium">{child.user.name}</h4>
-                                                <span className="text-gray-500 text-xs">
-                                                    Replied at {child.created_at}
-                                                </span>
-                                                <div>{child.body}</div>
-                                                <div className="flex items-center gap-x-4">
-                                                    { child.likes_count }
-
-                                                    {/* <div className="bg-green-500 text-white px-2 py-1 rounded">
-                                                        { thread.data.answer_id == child.id ? 'best' : ''}
-                                                    </div> */}
-
-                                                { thread.data.answer_id == child.id &&
-                                                    <div className="bg-green-500 text-white px-2 py-1 rounded">
-                                                        best
-                                                    </div>
-                                                }
-
-                                                    { auth.user &&
-                                                        <>
-                                                            { auth.user.id == thread.data.user.id &&
-                                                                <Link href={route('answer.store', thread.data.slug)} data={{ answer_id: child.id }} method="POST" as="button">
-                                                                    Mark as best
-                                                                </Link>
-                                                            }
-                                                            <Link href={route('likes.store')} method="POST" data={{ reply: child.id }} as="button" preserveScroll>
-                                                                Like
-                                                            </Link>
-                                                        </>
-                                                    }
-                                                </div>
-                                            </div>
-                                        </div>
-                                    )) : '' }
-
-                                    {data.parent_id ? data.parent_id == reply.id &&
-                                        <form onSubmit={replyStoreHandler}>
-                                            <div className="mb-5">
-                                                <textarea name="body" value={data.body} onChange={handleChange} />
-                                            </div>
-                                            <div className="flex items-center">
-                                                <button onClick={() => setData({...data, parent_id: null})}>Cancel</button>
-                                                <Button>Reply</Button>
-                                            </div>
-                                        </form>
-                                    : ''}
-                                </div>
-                            </div>
-                        </div>
+                        <ReplyBlock key={reply.id} {...{ reply, thread, auth, data, setData, showReplyForm, replyStoreHandler, handleChange }} />
                     )): 'No reply'}
                 <div className="h-px bg-black"></div>
 

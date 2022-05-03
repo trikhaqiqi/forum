@@ -10,7 +10,7 @@ export default function Index(props) {
         <div className="space-y-4">
             {threads.length ? threads.map(thread => (
                 <div className="block bg-white" key={thread.id}>
-                    <Link href="#" className="text-blue-500 font-medium text-sm">{thread.category.name}</Link>
+                    <Link href={`/threads?category=${thread.category.slug}`} className="text-blue-500 font-medium text-sm">{thread.category.name}</Link>
                     <Link href={route('threads.show', thread.slug)}>
                         <h1>{thread.title}</h1>
                     </Link>

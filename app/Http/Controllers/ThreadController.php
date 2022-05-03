@@ -21,9 +21,14 @@ class ThreadController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         $thread = Thread::query()->with(['category', 'user']);
+        // $thread->when($request->category, function ($q, $slug) {
+        //     return $q->whereBelongsTo(Category::whereSlug($slug)->first());
+        // });
+        $thread->when($request->category, fn ($q, $slug) => $q->whereBelongsTo(Category::whereSlug($slug)->first()))
+            ->when($request->search, fn ($q, $key) => $q->where('title', 'like', "%{$key}%"));
         return inertia('Threads/Index', [
             'threads' => ThreadResource::collection($thread->latest()->paginate(15)),
         ]);

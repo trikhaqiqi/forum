@@ -1,13 +1,30 @@
+import React, { useState, useEffect, useCallback } from "react";
 import Pagination from "@/Components/Pagination";
 import App from "@/Layouts/App";
 import { Head, Link } from "@inertiajs/inertia-react";
-import React from "react";
+import { debounce, pickBy } from "lodash";
+import { Inertia } from "@inertiajs/inertia";
 
 export default function Index(props) {
-    const { data: threads, meta } = props.threads
+    const { filter } = props;
+
+    const { data: threads, meta } = props.threads;
+
+    const [keyword, setKeyword] = useState(filter.search);
+
+    const reload = useCallback(
+        debounce((q) => {
+            // console.log(q);
+            Inertia.get('/threads', pickBy({ search: q, page: filter.page }), { preserveState: true });
+        }, 500)
+        , []);
+
+    useEffect(() => reload(keyword), [keyword]);
+
     // console.log(props.threads);
     return (
         <div className="space-y-4">
+            <input type="text" placeholder="Search..." name="search" id="search" value={keyword} onChange={(e) => setKeyword(e.target.value)} />
             {threads.length ? threads.map(thread => (
                 <div className="block bg-white" key={thread.id}>
                     <Link href={`/threads?category=${thread.category.slug}`} className="text-blue-500 font-medium text-sm">{thread.category.name}</Link>
@@ -25,4 +42,4 @@ export default function Index(props) {
     );
 }
 
-Index.layout = page => <App children={page} title="Threads" />
+Index.layout = page => <App children={page} title="Threads" />;

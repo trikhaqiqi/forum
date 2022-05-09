@@ -35,7 +35,8 @@ class ThreadController extends Controller
             //     'search' => $request->search ?? '',
             //     'page' => $request->page ?? '',
             // ]
-            'filter' => $request->only(['search', 'page']),
+            'categories' => Category::get(),
+            'filter' => $request->only(['search', 'page', 'category']),
         ]);
     }
 

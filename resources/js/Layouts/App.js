@@ -7,7 +7,7 @@ export default function App({ title, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        <div className="min-h-screen">
+        <div className="min-h-screen bg-gray-100">
             <Head title={title ?? 'Forum'} />
             <Navbar />
             <div className="container">

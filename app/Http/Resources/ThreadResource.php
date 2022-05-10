@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Illuminate\Support\Str;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class ThreadResource extends JsonResource
@@ -20,6 +21,7 @@ class ThreadResource extends JsonResource
             'title' => $this->title,
             'slug' => $this->slug,
             'body' => $this->body,
+            'teaser' => Str::limit($this->body, 180),
             'created_at' => $this->created_at->format("d F, Y"),
             // Ini untuk mark reply best comment
             'answer_id' => $this->answer_id,
@@ -33,7 +35,8 @@ class ThreadResource extends JsonResource
             'user' => [
                 'id' => $this->user->id,
                 'name' => $this->user->name,
-                'picture' => $this->when(request()->routeIs('threads.show', $this->slug), $this->user->picture()),
+                // 'picture' => $this->when(request()->routeIs('threads.show', $this->slug), $this->user->picture()),
+                'picture' => $this->user->picture(),
             ],
         ];
     }

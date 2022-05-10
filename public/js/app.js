@@ -2244,9 +2244,9 @@ function Filter(_ref) {
       value: selected,
       onChange: selectedHandler,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-        className: "relative mt-1",
+        className: "relative focus-within:ring focus-within:ring-blue-100 focus-within:border-blue-400 border rounded-lg transition duration-200 ",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_4__.Listbox.Button, {
-          className: "relative w-full cursor-default rounded-lg bg-white border py-2 pl-3 pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm",
+          className: "relative w-full cursor-default rounded-lg bg-white h-10 pl-3 pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
             className: "block truncate",
             children: initialState ? (0,lodash__WEBPACK_IMPORTED_MODULE_2__.find)(categories, function (category) {
@@ -2954,7 +2954,7 @@ function App(_ref) {
       setShowingNavigationDropdown = _useState2[1];
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    className: "min-h-screen",
+    className: "min-h-screen bg-gray-100",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Head, {
       title: title !== null && title !== void 0 ? title : 'Forum'
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Navbar__WEBPACK_IMPORTED_MODULE_1__["default"], {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
@@ -4003,39 +4003,119 @@ function Index(props) {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     className: "space-y-4",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-      className: "flex items-center justify-between gap-x-4 max-w-lg",
-      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Filter__WEBPACK_IMPORTED_MODULE_6__["default"], {
-        categories: categories,
-        initialState: filter.category || ''
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
-        type: "text",
-        placeholder: "Search...",
-        name: "search",
-        id: "search",
-        value: keyword,
-        onChange: function onChange(e) {
-          return setKeyword(e.target.value);
-        }
+      className: "flex items-center justify-between gap-x-2 w-full",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        className: "flex items-center gap-x-2",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
+          className: "h-10 rounded-lg border border-gray-200 focus:ring focus:border-blue-400 focus:ring-blue-100 transition duration-200",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+            value: "latest",
+            children: "Latest"
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+            value: "oldest",
+            children: "Oldest"
+          })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Filter__WEBPACK_IMPORTED_MODULE_6__["default"], {
+          categories: categories,
+          initialState: filter.category || ''
+        })]
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+        className: "bg-white flex items-center overflow-hidden rounded-lg border px-2 focus-within:ring focus-within:border-blue-400 focus-within:ring-blue-100 transition duration-200",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("svg", {
+          xmlns: "http://www.w3.org/2000/svg",
+          className: "h-5 w-5 mr-1.5 text-gray-500",
+          fill: "none",
+          viewBox: "0 0 24 24",
+          stroke: "currentColor",
+          strokeWidth: 2,
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("path", {
+            strokeLinecap: "round",
+            strokeLinejoin: "round",
+            d: "M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
+          className: "h-10 p-0 focus:outline-none focus:ring-transparent focus:border-transparent border-0",
+          type: "text",
+          placeholder: "Search...",
+          name: "search",
+          id: "search",
+          value: keyword,
+          onChange: function onChange(e) {
+            return setKeyword(e.target.value);
+          }
+        })]
       })]
     }), threads.length ? threads.map(function (thread) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-        className: "block bg-white",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Link, {
-          href: "/threads?category=".concat(thread.category.slug),
-          className: "text-blue-500 font-medium text-sm",
-          children: thread.category.name
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Link, {
-          href: route('threads.show', thread.slug),
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
-            children: thread.title
+        className: "bg-white flex gap-x-4 p-4 rounded-lg shadow",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+          className: "flex-shrink-0",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("img", {
+            className: "w-10 h-10 rounded-full",
+            src: thread.user.picture,
+            alt: thread.user.name
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
-          className: "flex items-center gap-x-4",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h4", {
-            children: thread.user.name
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
-            className: "text-gray-500 text-xs",
-            children: thread.created_at
+          className: "w-full",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Link, {
+            href: route('threads.show', thread.slug),
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
+              children: thread.title
+            })
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+            className: "leading-relaxed text-sm mb-3 text-gray-500",
+            children: thread.teaser
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "flex items-center justify-between",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "flex items-center text-sm gap-x-4",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Link, {
+                href: "/threads?category=".concat(thread.category.slug),
+                className: "hidden md:block text-blue-500 font-medium text-sm",
+                children: thread.category.name
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                className: "text-blue-500 font-semibold",
+                children: thread.user.name
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                className: "text-gray-500 hidden md:block",
+                children: thread.created_at
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+              className: "flex items-center text-sm gap-x-4",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("svg", {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  className: "h-5 w-5 text-gray-500 inline",
+                  viewBox: "0 0 20 20",
+                  fill: "currentColor",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("path", {
+                    fillRule: "evenodd",
+                    d: "M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z",
+                    clipRule: "evenodd"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                  className: "ml-1",
+                  children: "1"
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("span", {
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("svg", {
+                  xmlns: "http://www.w3.org/2000/svg",
+                  className: "h-5 w-5 text-gray-500 inline",
+                  fill: "none",
+                  viewBox: "0 0 24 24",
+                  stroke: "currentColor",
+                  strokeWidth: 2,
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("path", {
+                    strokeLinecap: "round",
+                    strokeLinejoin: "round",
+                    d: "M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z"
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                  className: "ml-1",
+                  children: "10"
+                })]
+              })]
+            })]
           })]
         })]
       }, thread.id);

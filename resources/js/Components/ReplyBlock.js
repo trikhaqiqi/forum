@@ -5,7 +5,7 @@ import Button from "./Button";
 export default function ReplyBlock({ reply, thread, auth, data, setData, showReplyForm, replyStoreHandler, handleChange }) {
     // console.log(reply.parent_id);
     return (
-        <div className="flex gap-x-4">
+        <div className="flex gap-x-4 bg-white p-4 my-2.5 lg:my-4 rounded-lg shadow">
             <img
                 className="w-8 h-8 mt-1 rounded-full"
                 src={reply.user.picture}
@@ -62,33 +62,33 @@ export default function ReplyBlock({ reply, thread, auth, data, setData, showRep
                         >
                             Reply
                         </button>
-                    : '' }
+                        : ''}
                 </div>
 
-                {reply.children.length ? reply.children.map(child =>  <ReplyBlock key={child.id} {...{ reply: child, thread, auth, data, setData, showReplyForm, replyStoreHandler, handleChange }} />): ""}
+                {reply.children.length ? reply.children.map(child => <ReplyBlock key={child.id} {...{ reply: child, thread, auth, data, setData, showReplyForm, replyStoreHandler, handleChange }} />) : ""}
 
                 {data.parent_id
                     ? data.parent_id == reply.id && (
-                          <form onSubmit={replyStoreHandler}>
-                              <div className="mb-5">
-                                  <textarea
-                                      name="body"
-                                      value={data.body}
-                                      onChange={handleChange}
-                                  />
-                              </div>
-                              <div className="flex items-center">
-                                  <button
-                                      onClick={() =>
-                                          setData({ ...data, parent_id: null })
-                                      }
-                                  >
-                                      Cancel
-                                  </button>
-                                  <Button>Reply</Button>
-                              </div>
-                          </form>
-                      )
+                        <form onSubmit={replyStoreHandler}>
+                            <div className="mb-5">
+                                <textarea
+                                    name="body"
+                                    value={data.body}
+                                    onChange={handleChange}
+                                />
+                            </div>
+                            <div className="flex items-center">
+                                <button
+                                    onClick={() =>
+                                        setData({ ...data, parent_id: null })
+                                    }
+                                >
+                                    Cancel
+                                </button>
+                                <Button>Reply</Button>
+                            </div>
+                        </form>
+                    )
                     : ""}
             </div>
         </div>

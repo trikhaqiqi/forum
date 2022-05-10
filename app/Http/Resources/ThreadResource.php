@@ -27,6 +27,7 @@ class ThreadResource extends JsonResource
             'answer_id' => $this->answer_id,
             // Ini akhirannya
             'likes_count' => $this->likes_count,
+            'replies_count' => $this->replies_count,
             'category' => [
                 'id' => $this->category->id,
                 'name' => $this->category->name,

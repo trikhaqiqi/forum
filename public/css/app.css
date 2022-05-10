@@ -830,6 +830,12 @@ select {
 .w-10 {
   width: 2.5rem;
 }
+.w-40 {
+  width: 10rem;
+}
+.w-36 {
+  width: 9rem;
+}
 .max-w-xl {
   max-width: 36rem;
 }
@@ -1639,6 +1645,18 @@ select {
 
   .lg\:w-3\/4 {
     width: 75%;
+  }
+
+  .lg\:w-40 {
+    width: 10rem;
+  }
+
+  .lg\:w-full {
+    width: 100%;
+  }
+
+  .lg\:w-36 {
+    width: 9rem;
   }
 
   .lg\:flex-row {

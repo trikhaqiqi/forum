@@ -27,7 +27,7 @@ export default function Index(props) {
         <div className="space-y-4">
             <div className="flex items-center justify-between gap-x-2 w-full">
                 <div className="flex items-center gap-x-2">
-                    <select className="h-10 rounded-lg border border-gray-200 focus:ring focus:border-blue-400 focus:ring-blue-100 transition duration-200">
+                    <select className="w-full lg:w-36 h-10 rounded-lg border border-gray-200 focus:ring focus:border-blue-400 focus:ring-blue-100 transition duration-200">
                         <option value="latest">Latest</option>
                         <option value="oldest">Oldest</option>
                     </select>
@@ -55,8 +55,8 @@ export default function Index(props) {
                             </div>
                             <div className="flex items-center justify-between">
                                 <div className="flex items-center text-sm gap-x-4">
-                                    <Link href={`/threads?category=${thread.category.slug}`} className="hidden md:block text-blue-500 font-medium text-sm">{thread.category.name}</Link>
                                     <div className="text-blue-500 font-semibold">{thread.user.name}</div>
+                                    <Link href={`/threads?category=${thread.category.slug}`} className="hidden md:block text-gray-500 font-semibold text-sm">{thread.category.name}</Link>
                                     <span className="text-gray-500 hidden md:block">{thread.created_at}</span>
                                 </div>
                                 <div className="flex items-center text-sm gap-x-4">
@@ -65,7 +65,7 @@ export default function Index(props) {
                                             <path fillRule="evenodd" d="M3.172 5.172a4 4 0 015.656 0L10 6.343l1.172-1.171a4 4 0 115.656 5.656L10 17.657l-6.828-6.829a4 4 0 010-5.656z" clipRule="evenodd" />
                                         </svg>
                                         <span className="ml-1">
-                                            1
+                                            {thread.likes_count}
                                         </span>
                                     </span>
                                     <span>
@@ -73,7 +73,7 @@ export default function Index(props) {
                                             <path strokeLinecap="round" strokeLinejoin="round" d="M8 12h.01M12 12h.01M16 12h.01M21 12c0 4.418-4.03 8-9 8a9.863 9.863 0 01-4.255-.949L3 20l1.395-3.72C3.512 15.042 3 13.574 3 12c0-4.418 4.03-8 9-8s9 3.582 9 8z" />
                                         </svg>
                                         <span className="ml-1">
-                                            10
+                                            {thread.replies_count}
                                         </span>
                                     </span>
                                 </div>

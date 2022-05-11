@@ -14,7 +14,7 @@ export default function Filter({ categories, initialState }) {
     return (
         <div className='w-full lg:w-52'>
             <Listbox value={selected} onChange={selectedHandler}>
-                <div className="relative focus-within:ring focus-within:ring-blue-100 focus-within:border-blue-400 border rounded-lg transition duration-200 ">
+                <div className="relative shadow rounded-lg">
                     <Listbox.Button className="relative w-full cursor-default rounded-lg bg-white h-10 pl-3 pr-10 text-left focus:outline-none focus-visible:border-indigo-500 focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-orange-300 sm:text-sm">
                         <span className="block truncate">{initialState ? find(categories, (category) => category.slug == selected).name : 'Choose a Category'}</span>
                         <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">

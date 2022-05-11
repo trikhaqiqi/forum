@@ -24,11 +24,14 @@ class ThreadController extends Controller
      */
     public function index(Request $request)
     {
+        if (in_array($request->filtered, ['participation', 'answer', 'mine'])) {
+            abort_if(!Auth::check(), 401);
+        }
         $threads = Thread::query()->with(['category', 'user'])
             // $thread->when($request->category, function ($q, $slug) {
             //     return $q->whereBelongsTo(Category::whereSlug($slug)->first());
             // });
-            ->when($request->category, fn ($q, $slug) => $q->whereBelongsTo(Category::whereSlug($slug)->first()))
+            ->when($request->category, fn ($q, $slug) => $q->whereBelongsTo(Category::whereSlug($slug)->firstOr(fn () => abort(404))))
             ->when($request->search, fn ($q, $key) => $q->where('title', 'like', "%{$key}%"))
             ->when($request->filtered, function ($q, $value) {
                 switch ($value) {

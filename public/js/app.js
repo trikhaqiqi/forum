@@ -2239,7 +2239,7 @@ function Filter(_ref) {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-    className: "w-full lg:w-40",
+    className: "w-full lg:w-52",
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_4__.Listbox, {
       value: selected,
       onChange: selectedHandler,
@@ -2766,7 +2766,7 @@ function Sidebar() {
       href: "/threads/create",
       children: "Create New Thread"
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(NavLink, {
-      href: "/",
+      href: "/threads",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
         xmlns: "http://www.w3.org/2000/svg",
         className: "h-5 w-5",
@@ -2780,7 +2780,7 @@ function Sidebar() {
       }), "All Threads"]
     }), auth.user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.Fragment, {
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(NavLink, {
-        href: "/",
+        href: "/threads?filtered=mine",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
           xmlns: "http://www.w3.org/2000/svg",
           className: "h-5 w-5",
@@ -2793,7 +2793,7 @@ function Sidebar() {
           })
         }), "My Question"]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(NavLink, {
-        href: "/",
+        href: "/threads?filtered=participation",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
           xmlns: "http://www.w3.org/2000/svg",
           className: "h-5 w-5",
@@ -2806,7 +2806,7 @@ function Sidebar() {
           })
         }), "My Participation"]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(NavLink, {
-        href: "/",
+        href: "/threads?filtered=answer",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
           xmlns: "http://www.w3.org/2000/svg",
           className: "h-5 w-5",
@@ -2820,7 +2820,7 @@ function Sidebar() {
         }), "My Answers"]
       })]
     }) : '', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(NavLink, {
-      href: "/",
+      href: "/threads?filtered=popular-this-week",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
         xmlns: "http://www.w3.org/2000/svg",
         className: "h-5 w-5",
@@ -2833,7 +2833,7 @@ function Sidebar() {
         })
       }), "Popular This Week"]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(NavLink, {
-      href: "/",
+      href: "/threads?filtered=popular",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)("svg", {
         xmlns: "http://www.w3.org/2000/svg",
         className: "h-5 w-5",
@@ -2852,7 +2852,7 @@ function Sidebar() {
         })]
       }), "Popular All Time"]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(NavLink, {
-      href: "/",
+      href: "/threads?filtered=solved",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
         xmlns: "http://www.w3.org/2000/svg",
         className: "h-5 w-5",
@@ -2865,7 +2865,7 @@ function Sidebar() {
         })
       }), "Solved"]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(NavLink, {
-      href: "/",
+      href: "/threads?filtered=unsolved",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
         xmlns: "http://www.w3.org/2000/svg",
         className: "h-5 w-5",
@@ -2878,7 +2878,7 @@ function Sidebar() {
         })
       }), "Unsolved"]
     }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsxs)(NavLink, {
-      href: "/",
+      href: "/threads?filtered=no-replies",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("svg", {
         xmlns: "http://www.w3.org/2000/svg",
         className: "h-5 w-5",
@@ -3974,6 +3974,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var lodash__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(lodash__WEBPACK_IMPORTED_MODULE_4__);
 /* harmony import */ var _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @inertiajs/inertia */ "./node_modules/@inertiajs/inertia/dist/index.js");
 /* harmony import */ var _Components_Filter__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @/Components/Filter */ "./resources/js/Components/Filter.js");
+/* harmony import */ var _headlessui_react__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @headlessui/react */ "./node_modules/@headlessui/react/dist/headlessui.esm.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -3996,6 +3997,50 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
+var menus = [{
+  label: 'latest',
+  value: 'latest'
+}, {
+  label: 'oldest',
+  value: 'oldest'
+}, {
+  label: 'line',
+  value: ''
+}, {
+  label: 'My Questions',
+  value: 'mine'
+}, {
+  label: 'My participation',
+  value: 'participation'
+}, {
+  label: 'My answer',
+  value: 'answer'
+}, {
+  label: 'line',
+  value: ''
+}, {
+  label: 'popular this week',
+  value: 'popular-this-week'
+}, {
+  label: 'popular all time',
+  value: 'popular'
+}, {
+  label: 'line',
+  value: ''
+}, {
+  label: 'solved',
+  value: 'solved'
+}, {
+  label: 'unsolved',
+  value: 'unsolved'
+}, {
+  label: 'line',
+  value: ''
+}, {
+  label: 'no replies',
+  value: 'no-replies'
+}];
 function Index(props) {
   var filter = props.filter,
       categories = props.categories;
@@ -4013,6 +4058,7 @@ function Index(props) {
     _inertiajs_inertia__WEBPACK_IMPORTED_MODULE_5__.Inertia.get('/threads', (0,lodash__WEBPACK_IMPORTED_MODULE_4__.pickBy)({
       search: q,
       page: filter.page,
+      filtered: filter.filtered,
       category: filter.category
     }), {
       preserveState: true
@@ -4028,14 +4074,36 @@ function Index(props) {
       className: "flex items-center justify-between gap-x-2 w-full",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
         className: "flex items-center gap-x-2",
-        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
-          className: "w-full lg:w-36 h-10 rounded-lg border border-gray-200 focus:ring focus:border-blue-400 focus:ring-blue-100 transition duration-200",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-            value: "latest",
-            children: "Latest"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-            value: "oldest",
-            children: "Oldest"
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.Menu, {
+          as: "div",
+          className: "relative",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.Menu.Button, {
+            className: "capitalize focus:outline-none bg-white rounded-lg px-4 w-52 py-2 shadow flex items-center justify-between",
+            children: [filter.filtered == 'popular-this-week' ? 'Popular This Week' : filter.filtered == 'no-replies' ? 'No Replies' : !filter.filtered ? 'Filter' : filter.filtered, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("svg", {
+              xmlns: "http://www.w3.org/2000/svg",
+              className: "h-5 w-5 text-gray-400",
+              viewBox: "0 0 20 20",
+              fill: "currentColor",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("path", {
+                fillRule: "evenodd",
+                d: "M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z",
+                clipRule: "evenodd"
+              })
+            })]
+          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.Menu.Items, {
+            className: "absolute mt-1 w-52 z-50 bg-white shadow rounded-lg overflow-hidden py-0.5",
+            children: menus.map(function (menu, key) {
+              return menu.label == 'line' ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+                className: "h-px bg-gray-200 my-0.5 w-full"
+              }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.Menu.Item, {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_3__.Link, {
+                  preserveState: true,
+                  className: "block px-4 py-2 hover:bg-gray-100 font-medium capitalize text-sm",
+                  href: "/threads?filtered=".concat(menu.value),
+                  children: menu.label
+                })
+              }, key);
+            })
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Filter__WEBPACK_IMPORTED_MODULE_6__["default"], {
           categories: categories,
@@ -4141,7 +4209,10 @@ function Index(props) {
           })]
         })]
       }, thread.id);
-    }) : 'No threads.', /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
+      className: "bg-white border border-dashed p-10 text-center text-gray-800 rounded-2xl",
+      children: "No threads."
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Components_Pagination__WEBPACK_IMPORTED_MODULE_1__["default"], {
       meta: meta
     })]
   });

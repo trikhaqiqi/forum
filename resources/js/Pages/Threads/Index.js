@@ -5,6 +5,24 @@ import { Head, Link } from "@inertiajs/inertia-react";
 import { debounce, pickBy } from "lodash";
 import { Inertia } from "@inertiajs/inertia";
 import Filter from "@/Components/Filter";
+import { Menu } from "@headlessui/react";
+
+const menus = [
+    { label: 'latest', value: 'latest' },
+    { label: 'oldest', value: 'oldest' },
+    { label: 'line', value: '' },
+    { label: 'My Questions', value: 'mine' },
+    { label: 'My participation', value: 'participation' },
+    { label: 'My answer', value: 'answer' },
+    { label: 'line', value: '' },
+    { label: 'popular this week', value: 'popular-this-week' },
+    { label: 'popular all time', value: 'popular' },
+    { label: 'line', value: '' },
+    { label: 'solved', value: 'solved' },
+    { label: 'unsolved', value: 'unsolved' },
+    { label: 'line', value: '' },
+    { label: 'no replies', value: 'no-replies' },
+];
 
 export default function Index(props) {
     const { filter, categories } = props;
@@ -16,7 +34,7 @@ export default function Index(props) {
     const reload = useCallback(
         debounce((q) => {
             // console.log(q);
-            Inertia.get('/threads', pickBy({ search: q, page: filter.page, category: filter.category }), { preserveState: true });
+            Inertia.get('/threads', pickBy({ search: q, page: filter.page, filtered: filter.filtered, category: filter.category }), { preserveState: true });
         }, 500)
         , []);
 
@@ -27,10 +45,29 @@ export default function Index(props) {
         <div className="space-y-4">
             <div className="flex items-center justify-between gap-x-2 w-full">
                 <div className="flex items-center gap-x-2">
-                    <select className="w-full lg:w-36 h-10 rounded-lg border border-gray-200 focus:ring focus:border-blue-400 focus:ring-blue-100 transition duration-200">
-                        <option value="latest">Latest</option>
-                        <option value="oldest">Oldest</option>
-                    </select>
+                    <Menu as="div" className="relative">
+                        <Menu.Button className="capitalize focus:outline-none bg-white rounded-lg px-4 w-52 py-2 shadow flex items-center justify-between">
+                            {/* {filter.filtered ? filter.filtered : 'Filter'} */}
+                            {filter.filtered == 'popular-this-week' ? 'Popular This Week' : filter.filtered == 'no-replies' ? 'No Replies' : !filter.filtered ? 'Filter' : filter.filtered}
+                            <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
+                                <path fillRule="evenodd" d="M10 3a1 1 0 01.707.293l3 3a1 1 0 01-1.414 1.414L10 5.414 7.707 7.707a1 1 0 01-1.414-1.414l3-3A1 1 0 0110 3zm-3.707 9.293a1 1 0 011.414 0L10 14.586l2.293-2.293a1 1 0 011.414 1.414l-3 3a1 1 0 01-1.414 0l-3-3a1 1 0 010-1.414z" clipRule="evenodd" />
+                            </svg>
+                        </Menu.Button>
+                        <Menu.Items className="absolute mt-1 w-52 z-50 bg-white shadow rounded-lg overflow-hidden py-0.5">
+                            {menus.map((menu, key) => {
+                                return menu.label == 'line' ? <div className="h-px bg-gray-200 my-0.5 w-full"></div> :
+                                    <Menu.Item key={key}>
+                                        <Link
+                                            preserveState
+                                            className={`block px-4 py-2 hover:bg-gray-100 font-medium capitalize text-sm`}
+                                            href={`/threads?filtered=${menu.value}`}
+                                        >
+                                            {menu.label}
+                                        </Link>
+                                    </Menu.Item>;
+                            })}
+                        </Menu.Items>
+                    </Menu>
                     <Filter categories={categories} initialState={filter.category || ''} />
                 </div>
                 <div className="bg-white flex items-center overflow-hidden rounded-lg border px-2 focus-within:ring focus-within:border-blue-400 focus-within:ring-blue-100 transition duration-200">
@@ -80,7 +117,10 @@ export default function Index(props) {
                             </div>
                         </div>
                     </div>
-                )) : 'No threads.'
+                )) :
+                    <div className="bg-white border border-dashed p-10 text-center text-gray-800 rounded-2xl">
+                        No threads.
+                    </div>
             }
             < Pagination meta={meta} />
         </div >

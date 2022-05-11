@@ -1,5 +1,6 @@
 import Reply from "@/Components/Reply";
-import App from "@/Layouts/App";
+// import App from "@/Layouts/App";
+import Forum from "@/Layouts/Forum";
 import { Head, Link, usePage } from "@inertiajs/inertia-react";
 import React from "react";
 
@@ -44,8 +45,6 @@ export default function Show({ thread }) {
                 </div>
             </div>
 
-
-
             {/* { auth.user ? auth.user.id === thread.data.user.id &&
                     <Link className="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600" href={route('threads.destroy', thread.data.slug)} method="delete" as="button">
                         Delete
@@ -59,4 +58,4 @@ export default function Show({ thread }) {
     );
 }
 
-Show.layout = page => <App children={page} />;
+Show.layout = page => <Forum children={page} />;

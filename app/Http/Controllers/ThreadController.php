@@ -54,7 +54,7 @@ class ThreadController extends Controller
                         $q->orderByDesc('replies_count');
                         break;
                     case 'popular-this-week':
-                        $q->whereHas('replies', fn ($r) => $r->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()]))->orderByDesc('replies_count');
+                        $q->whereHas('replies', fn ($r) => $r->whereBetween('created_at', [now()->subDays(7), now()]))->orderByDesc('replies_count');
                         break;
                     case 'solved':
                         $q->whereNotNull('answer_id');

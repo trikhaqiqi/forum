@@ -1,10 +1,11 @@
 import Button from "@/Components/Button";
 import Input from "@/Components/Input";
-import App from "@/Layouts/App";
+// import App from "@/Layouts/App";
+import Forum from "@/Layouts/Forum";
 import { useForm } from "@inertiajs/inertia-react";
 import React from "react";
 
-export default function Create( props ) {
+export default function Create(props) {
     const { categories } = props;
 
     const { data, setData, post, reset } = useForm({
@@ -12,13 +13,13 @@ export default function Create( props ) {
     });
 
     const handleChange = (e) => {
-        setData(e.target.name, e.target.value)
-    }
+        setData(e.target.name, e.target.value);
+    };
 
     const storeHandler = (e) => {
         e.preventDefault();
         post(route('threads.store'));
-    }
+    };
 
     return (
         <div>
@@ -43,4 +44,4 @@ export default function Create( props ) {
     );
 }
 
-Create.layout = page => <App children={page} title="New Thread"/>
+Create.layout = page => <Forum children={page} title="New Thread" />;

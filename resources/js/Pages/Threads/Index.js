@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Pagination from "@/Components/Pagination";
-import App from "@/Layouts/App";
+// import App from "@/Layouts/App";
 import { Head, Link } from "@inertiajs/inertia-react";
 import { debounce, pickBy } from "lodash";
 import { Inertia } from "@inertiajs/inertia";
 import Filter from "@/Components/Filter";
 import { Menu } from "@headlessui/react";
+import Forum from "@/Layouts/Forum";
 
 const menus = [
     { label: 'latest', value: 'latest' },
@@ -70,7 +71,7 @@ export default function Index(props) {
                     </Menu>
                     <Filter categories={categories} initialState={filter.category || ''} />
                 </div>
-                <div className="bg-white flex items-center overflow-hidden rounded-lg border px-2 focus-within:ring focus-within:border-blue-400 focus-within:ring-blue-100 transition duration-200">
+                <div className="bg-white flex items-center overflow-hidden shadow rounded-lg px-2">
                     <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-1.5 text-gray-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                         <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
                     </svg>
@@ -127,4 +128,4 @@ export default function Index(props) {
     );
 }
 
-Index.layout = page => <App children={page} title="Threads" />;
+Index.layout = page => <Forum children={page} title="Threads" />;

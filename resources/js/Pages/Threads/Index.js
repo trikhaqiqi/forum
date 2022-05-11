@@ -43,10 +43,10 @@ export default function Index(props) {
     // console.log(props.threads);
     return (
         <div className="space-y-4">
-            <div className="flex items-center justify-between gap-x-2 w-full">
-                <div className="flex items-center gap-x-2">
+            <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-2 w-full">
+                <div className="flex flex-col lg:flex-row lg:items-center gap-2">
                     <Menu as="div" className="relative">
-                        <Menu.Button className="capitalize focus:outline-none bg-white rounded-lg px-4 w-52 py-2 shadow flex items-center justify-between">
+                        <Menu.Button className="capitalize focus:outline-none bg-white rounded-lg px-4 w-full lg:w-52 py-2 shadow flex items-center justify-between">
                             {/* {filter.filtered ? filter.filtered : 'Filter'} */}
                             {filter.filtered == 'popular-this-week' ? 'Popular This Week' : filter.filtered == 'no-replies' ? 'No Replies' : !filter.filtered ? 'Filter' : filter.filtered}
                             <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor">
@@ -55,7 +55,7 @@ export default function Index(props) {
                         </Menu.Button>
                         <Menu.Items className="absolute mt-1 w-52 z-50 bg-white shadow rounded-lg overflow-hidden py-0.5">
                             {menus.map((menu, key) => {
-                                return menu.label == 'line' ? <div className="h-px bg-gray-200 my-0.5 w-full"></div> :
+                                return menu.label == 'line' ? <div key={key} className="h-px bg-gray-200 my-0.5 w-full"></div> :
                                     <Menu.Item key={key}>
                                         <Link
                                             preserveState

@@ -31,16 +31,19 @@ export default function Show({ thread }) {
                 </div>
                 <div className="border-t px-6 py-3">
                     {auth.user ?
-                        <>
-                            {auth.user.id === thread.data.user.id &&
-                                <Link className="bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600" href={route('threads.destroy', thread.data.slug)} method="delete" as="button">
-                                    Delete
-                                </Link>}
+                        <div className="flex items-center justify-between">
                             <Link className="px-3 space-x-2 py-0.5 text-sm rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-500 transition duration-200" href={route('likes.store')} method="POST" data={{ thread: thread.data.id }} as="button" preserveScroll>
                                 <span>Like</span>
                                 <span>{thread.data.likes_count}</span>
                             </Link>
-                        </>
+
+                            {auth.user.id === thread.data.user.id &&
+                                <Link href={route('threads.destroy', thread.data.slug)} method="delete" as="button">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-trash2-fill" viewBox="0 0 16 16">
+                                        <path d="M2.037 3.225A.703.703 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2a.702.702 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671L2.037 3.225zm9.89-.69C10.966 2.214 9.578 2 8 2c-1.58 0-2.968.215-3.926.534-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466-.18-.14-.498-.307-.975-.466z" />
+                                    </svg>
+                                </Link>}
+                        </div>
                         : ''}
                 </div>
             </div>

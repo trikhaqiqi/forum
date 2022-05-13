@@ -28,10 +28,10 @@ export default function Reply({ thread, auth }) {
     };
 
     return (
-        <div className="lg:ml-6">
+        <div className="lg:ml-6 my-3">
             {thread.replies.length ? thread.replies.map(reply => (
                 <ReplyBlock key={reply.id} {...{ reply, thread, auth, data, setData, showReplyForm, replyStoreHandler, handleChange }} />
-            )) : 'No reply'}
+            )) : ''}
 
             {/* <div className="h-px bg-black"></div> */}
 

@@ -25,8 +25,42 @@ const menus = [
     { label: 'no replies', value: 'no-replies' },
 ];
 
+// const ThreadSetting = ({ thread }) => {
+//     return (
+//         <Menu as="div" className='relative'>
+//             <Menu.Button>More</Menu.Button>
+//             <Menu.Items className="absolute right-0 bg-white w-52 border shadow-sm rounded-lg">
+//                 <Menu.Item>
+//                     <Link className="py-1 px-4" href={`/threads/${thread.slug}/edit`}>
+//                         Edit
+//                     </Link>
+//                 </Menu.Item>
+//             </Menu.Items>
+//         </Menu>
+//     );
+// };
+
+const ThreadSetting = ({ thread }) => {
+    return (
+        <Menu as="div" className='relative'>
+            <Menu.Button>
+                <svg xmlns="http://www.w3.org/2000/svg" width={16} height={16} fill="currentColor" className="bi bi-three-dots-vertical" viewBox="0 0 16 16">
+                    <path d="M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z" />
+                </svg>
+            </Menu.Button>
+            <Menu.Items className="absolute right-0 mr-4 bg-white w-52 border shadow-sm rounded-lg overflow-hidden py-0.5 top-0">
+                <Menu.Item>
+                    <Link className="py-2.5 block hover:bg-gray-50 px-4" href={`/threads/${thread.slug}/edit`}>
+                        Edit
+                    </Link>
+                </Menu.Item>
+            </Menu.Items>
+        </Menu>
+    );
+};
+
 export default function Index(props) {
-    const { filter, categories } = props;
+    const { filter, categories, auth } = props;
 
     const { data: threads, meta } = props.threads;
 
@@ -85,9 +119,14 @@ export default function Index(props) {
                             <img className="w-10 h-10 rounded-full" src={thread.user.picture} alt={thread.user.name} />
                         </div>
                         <div className="w-full">
-                            <Link href={route('threads.show', thread.slug)}>
-                                <h1>{thread.title}</h1>
-                            </Link>
+                            <div className="flex items-center justify-between">
+                                <Link href={route('threads.show', thread.slug)}>
+                                    <h1>{thread.title}</h1>
+                                </Link>
+                                {auth.user.id == thread.user.id ?
+                                    <ThreadSetting thread={thread} />
+                                    : ''}
+                            </div>
                             <div className="leading-relaxed text-sm mb-3 text-gray-500">
                                 {thread.teaser}
                             </div>

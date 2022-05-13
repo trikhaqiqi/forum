@@ -2331,7 +2331,7 @@ __webpack_require__.r(__webpack_exports__);
 function Hero(_ref) {
   var children = _ref.children;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_1__.jsx)("div", {
-    className: "bg-gray-50/50 shadow py-4 sm:py-10 lg:py-20",
+    className: "bg-white shadow py-4 sm:py-10 lg:py-20 mb-16",
     children: children
   });
 }
@@ -2684,15 +2684,15 @@ __webpack_require__.r(__webpack_exports__);
 function Pagination(_ref) {
   var meta = _ref.meta;
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("div", {
-    className: "flex items-center gap-x-4 !mb-10",
+    className: "flex items-center gap-x-1 !mb-10",
     children: meta.links.map(function (link, key) {
       return link.url == null ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)("span", {
-        className: "text-gray-500",
+        className: "text-gray-500 mx-4",
         dangerouslySetInnerHTML: {
           __html: link.label
         }
       }, key) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_2__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_1__.Link, {
-        className: "".concat(link.active ? 'text-blue-500' : ''),
+        className: "".concat(link.active ? 'text-blue-500' : '', " px-5 py-2 shadow rounded-lg bg-white"),
         href: link.url || '',
         dangerouslySetInnerHTML: {
           __html: link.label
@@ -2768,7 +2768,7 @@ function Reply(_ref) {
   };
 
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    className: "lg:ml-6",
+    className: "lg:ml-6 my-3",
     children: [thread.replies.length ? thread.replies.map(function (reply) {
       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_ReplyBlock__WEBPACK_IMPORTED_MODULE_3__["default"], {
         reply: reply,
@@ -2780,7 +2780,7 @@ function Reply(_ref) {
         replyStoreHandler: replyStoreHandler,
         handleChange: handleChange
       }, reply.id);
-    }) : 'No reply', auth.user ? !data.parent_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("form", {
+    }) : '', auth.user ? !data.parent_id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("form", {
       onSubmit: replyStoreHandler,
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
         className: "flex",
@@ -3158,8 +3158,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var _Components_Navbar__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/Navbar */ "./resources/js/Components/Navbar.js");
 /* harmony import */ var _inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @inertiajs/inertia-react */ "./node_modules/@inertiajs/inertia-react/dist/index.js");
-/* harmony import */ var _Components_Sidebar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @/Components/Sidebar */ "./resources/js/Components/Sidebar.js");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -3177,7 +3176,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
 function App(_ref) {
   var title = _ref.title,
       children = _ref.children;
@@ -3187,11 +3185,20 @@ function App(_ref) {
       showingNavigationDropdown = _useState2[0],
       setShowingNavigationDropdown = _useState2[1];
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
-    className: "min-h-screen bg-white",
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Head, {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
+    className: "min-h-screen bg-gray-50",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Head, {
       title: title !== null && title !== void 0 ? title : 'Forum'
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Navbar__WEBPACK_IMPORTED_MODULE_1__["default"], {}), children]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(_Components_Navbar__WEBPACK_IMPORTED_MODULE_1__["default"], {}), children, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("footer", {
+      className: "border-t py-8 lg:py-16 mt-16 bg-white",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+        className: "container",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+          className: "text-center",
+          children: "\xA9 2022 Kudang Koding"
+        })
+      })
+    })]
   });
 }
 
@@ -4028,9 +4035,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function Home(props) {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
-    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Hero__WEBPACK_IMPORTED_MODULE_3__["default"], {
+function Home(_ref) {
+  var threads = _ref.threads;
+  // console.log(threads);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_Components_Hero__WEBPACK_IMPORTED_MODULE_3__["default"], {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "container",
         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
@@ -4047,18 +4056,60 @@ function Home(props) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
             className: "flex items-center justify-center sm:justify-start gap-x-2",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
-              className: "w-44 transition-shadow duration-200 text-center rounded-lg bg-white shadow hover:shadow-md hover:text-blue-600 py-2.5 font-semibold",
+              className: "w-44 transition duration-200 text-center rounded-lg bg-blue-500 hover:bg-blue-700 text-white shadow hover:shadow-md py-2.5 font-semibold",
               href: "/threads",
               children: "Browse"
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
-              className: "w-44 transition-shadow duration-200 text-center rounded-lg bg-white shadow hover:shadow-md hover:text-blue-600 py-2.5 font-semibold",
+              className: "w-44 transition duration-200 text-center rounded-lg bg-orange-500 hover:bg-orange-600 text-white shadow hover:shadow-md py-2.5 font-semibold",
               href: "/threads",
               children: "Popular Threads"
             })]
           })]
         })
       })
-    })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+      className: "container",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h1", {
+        className: "text-black font-bold text-3xl mb-6",
+        children: "Latest"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+        className: "grid grid-cols-3 gap-10",
+        children: threads.map(function (thread, index) {
+          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+            className: " bg-white rounded-2xl shadow hover:shadow-lg transition-shadow duration-200 p-6",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+              className: "py-1 px-3 text-xs font-semibold bg-gray-800 text-gray-50 rounded-full",
+              href: "/threads?category=".concat(thread.category.slug),
+              children: thread.category.name
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("h4", {
+              className: "font-bold text-xl mt-2 mb-3",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+                href: "/threads/".concat(thread.slug),
+                children: thread.title
+              })
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+              className: "flex items-center justify-between text-sm",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+                className: "flex items-center",
+                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                  className: "flex-shrink-0",
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("img", {
+                    className: "w-5 h-5 rounded-full",
+                    src: thread.user.picture,
+                    alt: thread.user.name
+                  })
+                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                  children: thread.user.name
+                })]
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
+                className: "text-gray-500",
+                children: thread.created_at
+              })]
+            })]
+          }, index);
+        })
+      })]
+    })]
   });
 }
 
@@ -4206,7 +4257,7 @@ function Edit(_ref) {
 
   var updateHandler = function updateHandler(e) {
     e.preventDefault();
-    put(route('threads.update', thread.id));
+    put(route('threads.update', thread.slug));
   };
 
   var handleChange = function handleChange(e) {
@@ -4347,10 +4398,55 @@ var menus = [{
 }, {
   label: 'no replies',
   value: 'no-replies'
-}];
+}]; // const ThreadSetting = ({ thread }) => {
+//     return (
+//         <Menu as="div" className='relative'>
+//             <Menu.Button>More</Menu.Button>
+//             <Menu.Items className="absolute right-0 bg-white w-52 border shadow-sm rounded-lg">
+//                 <Menu.Item>
+//                     <Link className="py-1 px-4" href={`/threads/${thread.slug}/edit`}>
+//                         Edit
+//                     </Link>
+//                 </Menu.Item>
+//             </Menu.Items>
+//         </Menu>
+//     );
+// };
+
+var ThreadSetting = function ThreadSetting(_ref) {
+  var thread = _ref.thread;
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.Menu, {
+    as: "div",
+    className: "relative",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.Menu.Button, {
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("svg", {
+        xmlns: "http://www.w3.org/2000/svg",
+        width: 16,
+        height: 16,
+        fill: "currentColor",
+        className: "bi bi-three-dots-vertical",
+        viewBox: "0 0 16 16",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("path", {
+          d: "M9.5 13a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0zm0-5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"
+        })
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.Menu.Items, {
+      className: "absolute right-0 mr-4 bg-white w-52 border shadow-sm rounded-lg overflow-hidden py-0.5 top-0",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_headlessui_react__WEBPACK_IMPORTED_MODULE_8__.Menu.Item, {
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+          className: "py-2.5 block hover:bg-gray-50 px-4",
+          href: "/threads/".concat(thread.slug, "/edit"),
+          children: "Edit"
+        })
+      })
+    })]
+  });
+};
+
 function Index(props) {
   var filter = props.filter,
-      categories = props.categories;
+      categories = props.categories,
+      auth = props.auth;
   var _props$threads = props.threads,
       threads = _props$threads.data,
       meta = _props$threads.meta;
@@ -4454,11 +4550,16 @@ function Index(props) {
           })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
           className: "w-full",
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
-            href: route('threads.show', thread.slug),
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
-              children: thread.title
-            })
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
+            className: "flex items-center justify-between",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+              href: route('threads.show', thread.slug),
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
+                children: thread.title
+              })
+            }), auth.user.id == thread.user.id ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(ThreadSetting, {
+              thread: thread
+            }) : '']
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
             className: "leading-relaxed text-sm mb-3 text-gray-500",
             children: thread.teaser
@@ -4557,7 +4658,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-
 function Show(_ref) {
   var thread = _ref.thread;
   var auth = (0,_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.usePage)().props.auth; // console.log(auth.user.id, thread.user_id);
@@ -4589,14 +4689,9 @@ function Show(_ref) {
         })]
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("div", {
         className: "border-t px-6 py-3",
-        children: auth.user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.Fragment, {
-          children: [auth.user.id === thread.data.user.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
-            className: "bg-red-500 px-4 py-2 rounded text-white hover:bg-red-600",
-            href: route('threads.destroy', thread.data.slug),
-            method: "delete",
-            as: "button",
-            children: "Delete"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+        children: auth.user ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)("div", {
+          className: "flex items-center justify-between",
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsxs)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
             className: "px-3 space-x-2 py-0.5 text-sm rounded-md bg-blue-600 text-white font-semibold hover:bg-blue-500 transition duration-200",
             href: route('likes.store'),
             method: "POST",
@@ -4610,6 +4705,21 @@ function Show(_ref) {
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("span", {
               children: thread.data.likes_count
             })]
+          }), auth.user.id === thread.data.user.id && /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(_inertiajs_inertia_react__WEBPACK_IMPORTED_MODULE_2__.Link, {
+            href: route('threads.destroy', thread.data.slug),
+            method: "delete",
+            as: "button",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("svg", {
+              xmlns: "http://www.w3.org/2000/svg",
+              width: 16,
+              height: 16,
+              fill: "currentColor",
+              className: "bi bi-trash2-fill",
+              viewBox: "0 0 16 16",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("path", {
+                d: "M2.037 3.225A.703.703 0 0 1 2 3c0-1.105 2.686-2 6-2s6 .895 6 2a.702.702 0 0 1-.037.225l-1.684 10.104A2 2 0 0 1 10.305 15H5.694a2 2 0 0 1-1.973-1.671L2.037 3.225zm9.89-.69C10.966 2.214 9.578 2 8 2c-1.58 0-2.968.215-3.926.534-.477.16-.795.327-.975.466.18.14.498.307.975.466C5.032 3.786 6.42 4 8 4s2.967-.215 3.926-.534c.477-.16.795-.327.975-.466-.18-.14-.498-.307-.975-.466z"
+              })
+            })
           })]
         }) : ''
       })]

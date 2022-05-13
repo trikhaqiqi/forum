@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\ThreadResource;
+use App\Models\Thread;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +16,13 @@ class HomeController extends Controller
      */
     public function __invoke(Request $request)
     {
-        return inertia('Home');
+        $threads = Thread::query()
+            ->with('category', 'user')
+            ->latest()
+            ->limit(8)
+            ->get();
+        return inertia('Home', [
+            'threads' => ThreadResource::collection($threads),
+        ]);
     }
 }

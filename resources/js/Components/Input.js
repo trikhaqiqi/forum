@@ -4,6 +4,7 @@ export default function Input({
     type = 'text',
     name,
     value,
+    placeholder,
     className,
     autoComplete,
     required,
@@ -22,10 +23,11 @@ export default function Input({
         <div className="flex flex-col items-start">
             <input
                 type={type}
+                placeholder={placeholder}
                 name={name}
                 value={value}
                 className={
-                    `w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm ` +
+                    `transition duration-200 w-full border-gray-300 focus:border-blue-400 focus:ring focus:ring-blue-100 rounded-md shadow-sm ` +
                     className
                 }
                 ref={input}

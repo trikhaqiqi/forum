@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useCallback } from "react";
 import Pagination from "@/Components/Pagination";
-// import App from "@/Layouts/App";
-import { Head, Link } from "@inertiajs/inertia-react";
+import { Link } from "@inertiajs/inertia-react";
 import { debounce, pickBy } from "lodash";
 import { Inertia } from "@inertiajs/inertia";
 import Filter from "@/Components/Filter";
@@ -24,21 +23,6 @@ const menus = [
     { label: 'line', value: '' },
     { label: 'no replies', value: 'no-replies' },
 ];
-
-// const ThreadSetting = ({ thread }) => {
-//     return (
-//         <Menu as="div" className='relative'>
-//             <Menu.Button>More</Menu.Button>
-//             <Menu.Items className="absolute right-0 bg-white w-52 border shadow-sm rounded-lg">
-//                 <Menu.Item>
-//                     <Link className="py-1 px-4" href={`/threads/${thread.slug}/edit`}>
-//                         Edit
-//                     </Link>
-//                 </Menu.Item>
-//             </Menu.Items>
-//         </Menu>
-//     );
-// };
 
 const ThreadSetting = ({ thread }) => {
     return (
@@ -123,8 +107,15 @@ export default function Index(props) {
                                 <Link href={route('threads.show', thread.slug)}>
                                     <h1>{thread.title}</h1>
                                 </Link>
-                                {auth.user.id == thread.user.id ?
-                                    <ThreadSetting thread={thread} />
+                                {auth.user ?
+                                    <>
+
+                                        {
+                                            auth.user.id == thread.user.id ?
+                                                <ThreadSetting thread={thread} />
+                                                : ''
+                                        }
+                                    </>
                                     : ''}
                             </div>
                             <div className="leading-relaxed text-sm mb-3 text-gray-500">

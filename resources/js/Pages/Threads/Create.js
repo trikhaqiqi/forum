@@ -1,4 +1,5 @@
 import Button from "@/Components/Button";
+import FormThread from "@/Components/FormThread";
 import Input from "@/Components/Input";
 // import App from "@/Layouts/App";
 import Forum from "@/Layouts/Forum";
@@ -16,30 +17,14 @@ export default function Create(props) {
         setData(e.target.name, e.target.value);
     };
 
-    const storeHandler = (e) => {
+    const submitHandler = (e) => {
         e.preventDefault();
         post(route('threads.store'));
     };
 
     return (
         <div>
-            <form onSubmit={storeHandler}>
-                <div className="mb-5">
-                    <Input type="text" name="title" value={data.title} handleChange={handleChange} />
-                </div>
-                <div className="mb-5">
-                    <textarea name="body" value={data.body} onChange={handleChange} />
-                </div>
-                <div className="mb-5">
-                    <select name="category_id" value={data.category_id} onChange={handleChange}>
-                        <option>Choose category</option>
-                        {categories.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
-                    </select>
-                </div>
-                <Button>
-                    Create
-                </Button>
-            </form>
+            <FormThread {...{ data, submitHandler, handleChange, categories, submit: 'Update' }} />
         </div>
     );
 }

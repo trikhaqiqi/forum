@@ -1,9 +1,7 @@
-// import App from "@/Layouts/App";
 import { useForm } from "@inertiajs/inertia-react";
 import React from "react";
-import Input from "@/Components/Input";
-import Button from "@/Components/Button";
 import Forum from "@/Layouts/Forum";
+import FormThread from "@/Components/FormThread";
 
 export default function Edit({ thread, categories }) {
     const { data, setData, put } = useForm({
@@ -12,7 +10,7 @@ export default function Edit({ thread, categories }) {
         category_id: thread.category_id,
     });
 
-    const updateHandler = (e) => {
+    const submitHandler = (e) => {
         e.preventDefault();
         put(route('threads.update', thread.slug));
     };
@@ -21,23 +19,7 @@ export default function Edit({ thread, categories }) {
 
     return (
         <div>
-            <form onSubmit={updateHandler}>
-                <div className="mb-5">
-                    <Input type="text" name="title" value={data.title} handleChange={handleChange} />
-                </div>
-                <div className="mb-5">
-                    <textarea name="body" value={data.body} onChange={handleChange} />
-                </div>
-                <div className="mb-5">
-                    <select name="category_id" value={data.category_id} onChange={handleChange}>
-                        <option>Choose category</option>
-                        {categories.map(category => <option key={category.id} value={category.id}>{category.name}</option>)}
-                    </select>
-                </div>
-                <Button>
-                    Update
-                </Button>
-            </form>
+            <FormThread {...{ data, submitHandler, handleChange, categories, submit: 'Update' }} />
         </div>
     );
 }
